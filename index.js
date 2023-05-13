@@ -7,8 +7,10 @@ const passport=require('passport')
 const StrategyLocal=require('passport-local').Strategy
 const flash=require('connect-flash')
 const User = require('./models/User').user
-const port=3999
+const port=process.env.PORT||9002
 const helmet=require('helmet')
+const compression = require('compression');
+
 
 
 // Auto Refresh-----------------------------------------------------------
@@ -35,6 +37,12 @@ mongoose.connect('mongodb+srv://amwaj:Mm122333@cluster0.eymts.mongodb.net/UsersT
 
 
 // file ejs and css and middelawer
+
+app.use(compression());
+
+
+
+
 app.set('view engine','ejs')
 app.use(express.static('public'))
 app.use(express.json())
