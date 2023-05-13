@@ -7,7 +7,7 @@ const passport=require('passport')
 const StrategyLocal=require('passport-local').Strategy
 const flash=require('connect-flash')
 const User = require('./models/User').user
-const port=3999
+const port=process.env.PORT||9002
 const helmet=require('helmet')
 
 
