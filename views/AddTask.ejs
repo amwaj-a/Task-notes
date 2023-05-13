@@ -1,0 +1,30 @@
+
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <%- include('./partials/head.ejs')  %> 
+
+
+<body id='body'>
+  <%- include('./partials/HEADER.ejs',{title:'/Taskes',Add:'Taskes'}) %> 
+  <br>
+<main class="addNote container">
+<section >
+    <% user %> 
+    <h2> Create new Task </h2>
+    <form method="POST" action="/AddTask/<%= user._id %>   ">
+        <label for="title">Task:</label>
+        <input id='title' name="title" required>
+        <br>
+        
+        <br> 
+        <input type="checkbox" name="isCompleted" id="checkbox" >
+        <label>isCompleted</label>
+        <br>
+        <button class='text-light create'  type="submit" >Create</button></section>
+ <br>
+</main>
+<!-- <h2>rfgthjk</h2> -->
+<br>
+
+    </body>
+    </html> 

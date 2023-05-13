@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs') %> 
+<body>
+
+       <header class=" p-3">
+
+    
+              <a class=" px-3 pt-2 " style="all:unset;color: var(--color3); float:left" href="/">      
+              <h3  >
+                    
+                   Welcom <%= user.name %> 
+              </h3>  
+                </a>
+
+
+                <nav class="navbar navbar-expand-sm navbar-dark ">
+                     <div class="container">
+
+
+       <a class=" ms-auto" href="/logout" >  <i class="fa fa-sign-out"></i> 
+ </a>
+ </div>
+ </nav>
+ </header>
+
+<br>
+<!-- <h1 class="animate__animated animate__fliplnx">An animated element</h1> -->
+     <section class=" container text-center" >
+        <article class="animate__animated animate__backInLeft" >
+           <a class='s'style="all:unset" href="/Notes ">
+    <h2 class="animation">Notes </h2>
+           <img width="90%" src="Note.png" alt="" srcset="">
+    </a>  </article>
+    <article class="animate__animated animate__backInRight" >        
+          <a  class='s' style="all:unset" href="/Taskes ">
+         <h2 class="animation">Taskes</h2>
+                <img width="90%" src="task.png" alt="task" style="height: 27vh;">
+           </a></article>
+     </section>
+
+</body>
+</html>

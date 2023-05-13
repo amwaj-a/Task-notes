@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials//head.ejs') %> 
+<body>
+ <%- include('./partials/HEADER.ejs',{title:'/Notes',Add:'Notes'})  %> 
+
+<!-- <main style="border:0px; box-shadow:none"> -->
+
+
+<main class="More p-3 m-5" >
+
+
+
+    <h3 class="mx-5 my-3" > <span>Tilte:</span><%- user.title %> </h3>
+    
+    <h3 class="ms-5"style="display:inline-block;"> <span style="display:inline-block; ">Body:</span> </h3> 
+    <p class="" style="display: inline;"><%- user.body %> 
+        <!-- <small><a href="/more" style="position: absolute;right: 10px;bottom: 10px">Show more</a></small></p> -->
+</p>
+<form method="POST" action="/delete/<%-user._id%>" >
+
+<button type="submit" class="delete text-center rounded">
+
+
+  <span>delete</span>
+</button>
+  </form> 
+</main>
+
+
+<!-- </main> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

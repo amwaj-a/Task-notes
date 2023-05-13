@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials//head.ejs') %> 
+
+<body>
+  <!-- <header>
+  <em >
+     Login 
+  </em>    
+  </header>   -->
+<br><br>
+  <main>
+      <section class=" text-center loginF mx-4 "> 
+        <b style="margin: 10px;  ">
+ 
+          
+          <h1 class="animate__animated  animate__jackInTheBox">SIGN IN</h1>
+
+          </b>  
+          
+          <!-- <div class="  "> -->
+                  <!-- <img class="animate__animated animate__zoomInDown text-center col-5 m-2" src="a.png" alt=""> -->
+
+       
+          <form  class="animate__animated animate__zoomInDown   text-center" method="POST" action="/login"> 
+        
+      
+
+        
+            <input type="email" placeholder="Email" name="username" required>
+              <br> <br>
+              <input  placeholder="Password" type="password" name="password" required>
+               <br>
+               <br>
+             
+               
+               <em>Don't have an account ? <a href="/register" style="color: var(--color3);">SignUp</a></em>
+                <br> 
+        
+                <br><button class="log" style="background-color: var(--color3);">Login</button>
+          </form>
+      <p style="color: red;">
+         <%= massage %> 
+      </p> 
+        <!-- </div> -->
+      </section>
+  </main>
+  
+</body>
+</html>

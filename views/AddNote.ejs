@@ -1,0 +1,36 @@
+
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <%- include('./partials/head.ejs')  %> 
+
+
+<body id='body'>
+  <%- include('./partials/HEADER.ejs',{title:'/Notes',Add:' Notes'})  %> 
+  <br>
+  <main class="pt-5 addNote container animate__animated animate__backInUp">
+    <section>
+
+    <% user %> 
+    <h2 > New Note </h2>
+    <form class="" method="POST" action="/AddNote/<%= user._id %>   ">
+        <label for="title">Title:</label>
+        <input id='title' name="title" required>
+        <br>
+        
+        <br>      <label for="body">Summary:</label>
+        <textarea name="body" id="body" rows="5" ></textarea>
+        <br>
+
+        <br>
+          <button class='text-light create'  type="submit" >Create</button>
+
+
+             
+    </form>
+   
+    </section>
+</main>
+<!-- <h2>rfgthjk</h2> -->
+
+    </body>
+    </html> 

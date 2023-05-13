@@ -1,0 +1,183 @@
+const express=require('express')
+const app=express()
+const session=require('express-session')
+const bodyParser=require('body-parser')
+
+const flash=require('connect-flash')
+
+const passport=require('passport')
+const passportLocal=require('passport-local')
+const connectEnsureLogin=require('connect-ensure-login')
+
+// const cookieParser=require('cookie-parser')
+
+
+const port=5000
+const Auth=require('./routes/Auth')
+const mongoose = require('mongoose')
+const User=require('./models/User')
+const TaskModel=require('./models/Task')
+
+
+
+
+
+
+// mongodb connect 
+mongoose.connect('mongodb+srv://amwaj:Mm122333@cluster0.eymts.mongodb.net/UsersTask?retryWrites=true&w=majority')
+.then(res=> console.log("Connect DB"))
+.catch(err=> console.log(err))
+
+
+
+app.set('view engine','ejs')
+app.use(express.static('public'))
+
+//start session
+app.use(session({
+  secret:'amwaj',
+  resave:false,
+  saveUninitialized:true,
+  Cookie:{maxAge:60*60*1000}//1 hour
+}))
+
+// middleware 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(passport.initialize());// middleware to use passport
+app.use(passport.session()) // needed to use session with passport
+
+// declared Strategy  -> passport local Strategy
+passport.use(User.createStrategy())
+
+// to use with session (req.session.passport.user)
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
+
+// app.use(cookieParser())
+
+
+
+app.use(flash())
+
+
+app.get('/', (req,res)=>{
+     res.render('main',{error:req.flash('masg')})
+  
+})
+app.get('/home',connectEnsureLogin.ensureLoggedIn(),(req,res)=>{
+console.log(req.user);
+console.log(" massage-----------");
+console.log(req.flash('masg'));
+res.render('home',{result:req.flash('masg')})
+
+})
+app.post('/',async (req,res)=>{
+  const s=req.body
+  User.register(new User({s}), req.body.password, function(err, user){
+    if(err) {
+   return res.status(500).json({err:err});
+  }
+  if(req.body.name){
+   user.name = req.body.name;
+  }
+  user.save(function(err, user){
+   passport.authenticate('local')(req, res, function(){
+    return res.status(200).json({status: 'Registration OK'});
+   });
+  });
+  });
+  // let a=new User({name:req.body.name, username:req.body.username})
+  // User.register(a, req.body.password, function(err, user){
+  //   if(err){
+  //     console.log("NO 91--------------");
+  //       console.log(err);
+  //       req.flash('masg',err.massage)
+  //       return res.render("main",{error:req.flash('masg')});
+  //   }
+  //   passport.authenticate("local")(req, res, function(){
+  //     console.log("yas");
+  //       res.redirect("/home");
+  //   });
+// });
+
+
+
+// try {
+// const email=req.body.email
+// let user=await  User.findOne({email})
+// if(user){
+//   req.flash('masg'," Email already exists" )
+//   return   res.redirect('/')
+// }
+// user=await User(req.body)
+// // req.flash('masg','Successful')
+// user.save().then(result=>{
+//   req.flash('data',result)
+//   res.redirect('/home')
+
+// }).catch(err=>console.log(err))
+
+// } catch (error) {
+//   console.log("Error in Try Catch"+error);
+// }
+})
+
+app.get('/login',(req,res)=>{
+  res.render('login',{error:req.flash('masg')})
+})
+app.post('/login',passport.authenticate('local',{failureRedirect:'/'}) ,(req,res)=>{
+console.log("Login/////////////////////////////////////");
+
+res.redirect('/home')
+
+})
+//   console.log(req.body);
+//   const {email,password}=req.body
+//   try {
+// const UserLogin=await user.findOne({email})
+//   // console.log(UserLogin )
+//   if(!UserLogin){
+//     console.log("Here Yas------------------------------------");
+//   //  res.render('login',{error:'Login-Email'})
+//   }
+//   } catch (error) {
+//       console.log(error);
+//   }
+
+//   // console.log("Email is Exite");
+// })
+
+
+
+
+// -----------Get ADD TASK----------------
+app.get('/Add-task/:user',(req,res)=>{
+// console.log(req.params.user);
+  if(req.params.user==':user'){
+    res.render('main',{title:false , error:''})
+  }else{  
+    console.log("50 index "+User);
+    res.render("Add-task",{result:req.params.user})
+}})
+
+app.post('/Add/:id',(req,res)=>{
+  
+})
+
+app.use('/Auth',Auth)
+
+
+app.post('/Add/:id',(req,res)=>{
+  const ID=req.params.id
+User.updateOne(ID,{task:res.body})
+})
+
+
+//505
+app.use((req,res)=>{
+  res.status(404).send("<h1>Sorry can't find that</h1>")
+})
+
+app.listen(port,()=>{
+    console.log(`Server is Working PORT ${port}`);
+})

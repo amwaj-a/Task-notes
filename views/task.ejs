@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials//head.ejs') %> 
+<body>
+    <%- include('./partials/HEADER.ejs',{title:'/Addtask',Add:'<i class="fa fas fa-plus"></i>   Add Task </a>'}) %> 
+ 
+           
+     
+        <h1  class="m-5 animate__animated animate__rubberBand"   >Task</h1>
+ 
+
+     
+    
+     <main style="all:unset" >
+      
+         <section class="Taskes">
+             <% Object.values(user.task).forEach(e=>{%> 
+<br>
+<article> 
+           <form style="all:unset" action="/change/<%- e._id %> " method="post">     
+<br>
+    <% if(e.isCompleted){%>  
+          <!-- <input type="checkbox" name="" id="" checked onclick="return false;" > -->
+
+    <h3 style="text-decoration: line-through ;color:  #1f3153;"><%= e.title %> </h3>
+
+    <% }else{%>   
+
+          <!-- <input type="checkbox" name="" id="checkbox" >  -->
+                          <!-- <i  class='fas '>&#xf2f1;</i> -->
+    <h3 style="text-decoration:none "><%= e.title %> </h3>
+
+             <% } %> 
+
+               <button name="edit"  type="submit" style="all:unset;float: right; margin-right: 10px;">
+           
+                <i class="fa fa-edit"></i>
+
+               </button>
+               <button name="delete" formaction="/deleted/<%- e._id %> " type="submit" style="all:unset;float: right; margin-right: 10px;">
+           
+                <i class='fas fa fa-trash'></i>
+                
+               </button>
+                
+<br>
+<br>
+
+</form>
+
+
+   
+</article>
+                <% }) %> 
+         </section>
+     </main>
+
+</body>
+</html>

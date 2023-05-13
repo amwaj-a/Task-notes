@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials//head.ejs') %> 
+<body>
+ <%- include('./partials/HEADER.ejs',{title:'/Addnote',Add:' <i class="fa fas fa-plus"></i> Add Note </a>'})  %> 
+ <h1 class="m-5 animate__animated animate__rubberBand"  >Notes</h1>
+ 
+<main >
+    <% Object.values(user.note).forEach(e=>{%>
+
+<article class='note animate__animated animate__backInUp'style="position: relative;">
+          <a  class='s' href="/more/<%- e._id %> " style="all:unset">
+  <h3><%- e.title %> </h3>
+    <p><%- e.body %></p>
+        
+    
+        
+        
+        </a>
+</article>
+
+
+<%    }) %> 
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

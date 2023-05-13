@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials//head.ejs') %> 
+
+
+<body>
+
+<!-- <header>
+  <em>
+     SingUp 
+  </em>  
+ 
+ </header>   -->
+
+  <main>
+    
+      <section  class="mt-5 p-4 loginF">
+        <b style="margin: 10px; ">
+
+<h1 class="animate__animated  animate__jackInTheBox">SIGN UP</h1>
+      </b> 
+      <!-- <div class=" animate__animated  animate__jackInTheBox  container"> -->
+        <!-- <img class="col-5 m-3" src="b.png" alt=""> -->
+
+
+    
+          <form class=" animate__animated  animate__jackInTheBox " method="POST" action="/register">
+  <input placeholder="User Name" type="text" name="name" >
+  <br><br> <input  placeholder="Email" type="email" name="username" required>
+       <br>       <br> <input placeholder="Password"  type="password" name="password" required>
+              <br> <br><em>already have an account ? <a href="/login"style="color: var(--color3);">Login</a></em>
+             <br><br>
+     <button class="log" style="background-color: var(--color3);">Sing Up</button>
+          </form>
+          <p style="color: red;">
+            <%= error %> 
+         </p> 
+      </section>
+  </main>
+
+ 
+</body>
+</html>
