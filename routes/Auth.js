@@ -132,7 +132,9 @@ router.get('/logout', function(req, res){
 
 router.get('/login',(req,res)=>{
   const massage=req.flash('error')[0]
-
+  // print('------------------------------------------ggggggggggggggg')
+  // print(setTimeout(() => res.sendStatus(200), 15 * 1000));
+  // setTimeout(() => res.sendStatus(200), 15 * 1000)
     res.render('login',{massage})
    
 })

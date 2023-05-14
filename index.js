@@ -38,7 +38,7 @@ mongoose.connect('mongodb+srv://amwaj:Mm122333@cluster0.eymts.mongodb.net/UsersT
 
 // file ejs and css and middelawer
 
-app.use(compression());
+// app.use(compression());
 
 
 
@@ -80,7 +80,7 @@ app.use('/',Auth)
 //   if(req.isAuth)
 // }
 
-app.listen(process.env.PORT||port,()=>{
+app.listen(port,()=>{
   console.log("Successful ");
 })
 
